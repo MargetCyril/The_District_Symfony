@@ -39,7 +39,7 @@ class Plat
 
     #[ORM\ManyToOne(inversedBy: 'plats')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Categorie $cotegorie = null;
+    private ?Categorie $categorie = null;
 
     public function __construct()
     {
@@ -141,14 +141,14 @@ class Plat
         return $this;
     }
 
-    public function getCotegorie(): ?Categorie
+    public function getCategorie(): ?Categorie
     {
-        return $this->cotegorie;
+        return $this->categorie;
     }
 
-    public function setCotegorie(?Categorie $cotegorie): static
+    public function setCategorie(?Categorie $categorie): static
     {
-        $this->cotegorie = $cotegorie;
+        $this->categorie = $categorie;
 
         return $this;
     }

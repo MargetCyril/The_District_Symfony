@@ -27,7 +27,7 @@ class Categorie
     /**
      * @var Collection<int, Plat>
      */
-    #[ORM\OneToMany(targetEntity: Plat::class, mappedBy: 'cotegorie')]
+    #[ORM\OneToMany(targetEntity: Plat::class, mappedBy: 'categorie')]
     private Collection $plats;
 
     public function __construct()
@@ -88,7 +88,7 @@ class Categorie
     {
         if (!$this->plats->contains($plat)) {
             $this->plats->add($plat);
-            $plat->setCotegorie($this);
+            $plat->setCategorie($this);
         }
 
         return $this;
@@ -98,8 +98,8 @@ class Categorie
     {
         if ($this->plats->removeElement($plat)) {
             // set the owning side to null (unless already changed)
-            if ($plat->getCotegorie() === $this) {
-                $plat->setCotegorie(null);
+            if ($plat->getCategorie() === $this) {
+                $plat->setCategorie(null);
             }
         }
 
