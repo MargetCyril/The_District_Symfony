@@ -60,14 +60,14 @@ class CatalogueController extends AbstractController
     {
         $titre = "Plats";
         $search = "";
+        $plat = $this->PlatRepo->findAll();
 
 
-        return $this->render('catalogue/index.html.twig', [
+        return $this->render('catalogue/plat.html.twig', [
             'controller_name' => 'PlatsController',
             'titre' => $titre,
             'search' => $search,
+            'plat' => $plat,
         ]);
     }
-
-   
 }

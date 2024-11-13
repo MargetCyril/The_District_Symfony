@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{titre}}{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+		<div class="corps"><br>
+
+			<br>
+			<div class="presentation d-block">
+				<h2>Nos
+					{{plat | length}}
+					Plats</h2><br>
+				<div class="row g-3">
+
+					{% for plat in plat %}
+						<div class="col-md-6">
+							<a href={{plat.id}} class="img-link">
+								<img src='{{ asset("/images_the_district/food/" ~ plat.image )}}' class="img-link" alt={{plat.description}}></a>
+							<div class="cache"><br>{{plat.libelle |upper}}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<br><br>
+		</div>
+	</div>
+</div>
+{% endblock %}
