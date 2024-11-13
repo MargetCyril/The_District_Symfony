@@ -70,4 +70,19 @@ class CatalogueController extends AbstractController
             'plat' => $plat,
         ]);
     }
+/* 
+    #[Route('/categories/{{categorie_id}}', name: 'app_categoriesid')]
+    public function categoriesid(): Response
+    {
+        $titre = "Catégories";
+        $search = "";
+        $categorie = $this->CategorieRepo->findAll();
+
+        return $this->render('catalogue/categorie.html.twig', [
+            'controller_name' => 'CategoriesController',
+            'titre' => $titre,
+            'search' => 'ça marche',
+            'categorie' => $categorie
+        ]);
+    } */
 }

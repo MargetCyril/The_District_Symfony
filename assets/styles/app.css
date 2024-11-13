@@ -128,7 +128,7 @@ a:hover+.cache {
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 60vw;
   position: relative;
   margin: auto;
 
@@ -136,7 +136,7 @@ a:hover+.cache {
 
 .img-slide {
     height: 50vh;
-    width: 100%;
+    width: 60vw;
     object-fit: cover; 
     margin: auto;
 }
