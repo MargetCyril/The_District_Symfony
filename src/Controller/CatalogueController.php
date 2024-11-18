@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\CategorieRepository;
 use App\Repository\PlatRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -41,10 +42,11 @@ class CatalogueController extends AbstractController
     }
 
  #[Route('/categories', name: 'app_categories')]
-    public function categories(): Response
+    public function categories(Request $request): Response
     {
         $titre = "Catégories";
         $search = "";
+
         $categorie = $this->CategorieRepo->findAll();
 
         return $this->render('catalogue/categorie.html.twig', [
@@ -70,19 +72,21 @@ class CatalogueController extends AbstractController
             'plat' => $plat,
         ]);
     }
-/* 
-    #[Route('/categories/{{categorie_id}}', name: 'app_categoriesid')]
-    public function categoriesid(): Response
+ 
+    #[Route('/categories/plat', name: 'app_categoriesid')]
+    public function categoriesid(Request $request): Response
     {
-        $titre = "Catégories";
+        $titre = "Plats de cette catégorie";
         $search = "";
-        $categorie = $this->CategorieRepo->findAll();
+        $param = $request->query->get('id');
+    
+        $categorie = $this->PlatRepo->getSomeCategories($param);
 
         return $this->render('catalogue/categorie.html.twig', [
             'controller_name' => 'CategoriesController',
             'titre' => $titre,
             'search' => 'ça marche',
-            'categorie' => $categorie
+            'categorie' => $categorie,
         ]);
-    } */
+    } 
 }

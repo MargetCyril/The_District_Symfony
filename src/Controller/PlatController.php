@@ -19,6 +19,7 @@ final class PlatController extends AbstractController
     {
         return $this->render('plat/index.html.twig', [
             'plats' => $platRepository->findAll(),
+            'search' => ''
         ]);
     }
 
@@ -39,6 +40,7 @@ final class PlatController extends AbstractController
         return $this->render('plat/new.html.twig', [
             'plat' => $plat,
             'form' => $form,
+            'search' => ''
         ]);
     }
 
@@ -47,6 +49,7 @@ final class PlatController extends AbstractController
     {
         return $this->render('plat/show.html.twig', [
             'plat' => $plat,
+            'search' => ''
         ]);
     }
 
@@ -65,6 +68,7 @@ final class PlatController extends AbstractController
         return $this->render('plat/edit.html.twig', [
             'plat' => $plat,
             'form' => $form,
+            'search' => ''
         ]);
     }
 
@@ -77,5 +81,6 @@ final class PlatController extends AbstractController
         }
 
         return $this->redirectToRoute('app_plat_index', [], Response::HTTP_SEE_OTHER);
+        
     }
 }
