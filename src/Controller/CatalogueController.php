@@ -79,14 +79,15 @@ class CatalogueController extends AbstractController
         $titre = "Plats de cette catégorie";
         $search = "";
         $param = $request->query->get('id');
-    
-        $categorie = $this->PlatRepo->getSomeCategories($param);
+        $categorie = $this->CategorieRepo->getNameCategories($param);
+        $plat = $this->PlatRepo->getSomeCategories($param);
 
         return $this->render('catalogue/categorie.html.twig', [
             'controller_name' => 'CategoriesController',
             'titre' => $titre,
             'search' => 'ça marche',
             'categorie' => $categorie,
+            'plat' => $plat,
         ]);
     } 
 }

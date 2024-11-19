@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="corps"><br>
+			<section class="row">
+            <div class="col-12">
+                <h1>Panier</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in data %}
+                            <tr>
+                                <td>{{ element.plat.libelle }}</td>
+                                <td>{{ element.plat.prix }} €</td>
+                                <td>{{ element.quantite }}</td>
+                                <td>{{ element.quantite * element.plat.prix }} €</td>
+                                <td>
+                                    <a href="{{ path('app_addpanier', {id: element.plat.id}) }}" class="btn btn-success">+</a>
+                                    <a href="{{ path('app_suppanier', {id: element.plat.id}) }}" class="btn btn-warning">-</a>
+                                    <a href="{{ path('app_delpanier', {id: element.plat.id}) }}" class="btn btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Votre panier est vide</td>
+                            </tr>    
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total</td>
+                            <td>{{ total }} €</td>
+                            <td>
+                                <a href="{{ path('app_clearpanier') }}" class="btn btn-danger">Vider</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <a href={# "{{ path('app_orders_add') }}" #} class="btn btn-primary">Valider le panier</a>
+            </div>
+        </section>
+
+		</div>
+	</div>
+{% endblock %}
