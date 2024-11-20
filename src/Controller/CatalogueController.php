@@ -25,10 +25,10 @@ class CatalogueController extends AbstractController
     public function index(): Response
     {
         $titre = "Acceuil";
-        $search = '<form method="post" action="search.php">;
-                    <label for="recherche"></label>;
-                    <input type="text" name="recherche" id="recherche" placeholder="recherche...">;
-                    </form>;';
+        $search = '<form method="post" action="search.php">
+                    <label for="recherche"></label>
+                    <input type="text" name="recherche" id="recherche" placeholder="recherche...">
+                    </form>';
         $categorie = $this->CategorieRepo->findAll();
         $plat = $this->PlatRepo->findAll();
 

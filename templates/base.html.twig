@@ -21,7 +21,7 @@
 			<header class="bg-color">
 
 				<nav class="navbar navbar-expand-sm">
-					<a href="login_form.php">
+					<a href="/connexion">
 						<img src="{{ asset('/images_the_district/the_district_brand/logo_transparent.png')}}" title="logo transparent" class="navbar-brand"></a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
 						<span class="navbar-toggler-icon"></span>
@@ -41,16 +41,47 @@
 								<a href="{{ path('app_contact') }}" title="Contact" class="nav-link header">Contact</a>
 							</li>
 						</ul>
-					</div>
-				</nav>
-				<div class="basilic">
-					<div
-						class="search"> {{search|raw}}
+						<ul>
+						{% if app.user %}
 
-					</div>
+							</li>
+							<li class="nav-item">
+								<button type="button" class="btn btn-primary">
+									<a style="color: white;" href="{{ path('app_logout') }}">Déconnexion</a>
+								</button>
+							</li>
+							<li class="nav-navitem">
+								<button type="button" class="btn btn-primary">
+									<a style="color: white;" href="/panier">Panier</a>
+								</button>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<button type="button" class="btn btn-primary">
+									<a style="color: white;" href="/connexion">Connexion</a>
+								</button>
+							</li>
+							<li class="nav-item">
+								<button type="button" class="btn btn-primary">
+									<a style="color: white;" href="/inscription">M'inscrire</a>
+								</button>
+							</li>
+
+						{% endif %}
+
+					</ul>
 				</div>
-			</header>
-					{% block body %}{% endblock %}
+			</nav>
+			<div
+				class="basilic">{# <div class="search me-auto">
+																											{{search|raw}}
+																					
+																										
+																										</div> #}
+			</div>
+		</header>
+		<div class="corps"> {% block body %}{% endblock %}
+			</div>
 			<footer class="bg-color text-center py-3">
 				<a href="https://www.facebook.com" target="_blank">
 					<i class="fab fa-facebook-f"></i>
@@ -70,5 +101,5 @@
 
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 		</body>
-	</body>
-</html></body></html>
+	</html>
+</body></html></body></html>
