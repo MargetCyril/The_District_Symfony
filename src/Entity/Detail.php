@@ -17,7 +17,7 @@ class Detail
     private ?int $quantite = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Commande $commande = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]

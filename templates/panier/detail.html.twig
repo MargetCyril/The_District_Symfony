@@ -4,8 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid">
-		<div class="corps"><br>
+<br>
 			<section class="row">
             <div class="col-12">
                 <h1>Panier</h1>
@@ -48,7 +47,7 @@
                         </tr>
                     </tfoot>
                 </table>
-                <a href={# "{{ path('app_orders_add') }}" #} class="btn btn-primary">Valider le panier</a>
+                <a href=" {{ path('app_commande_add') }} " class="btn btn-primary">Valider le panier</a>
             </div>
         </section>
 
