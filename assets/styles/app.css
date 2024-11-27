@@ -46,7 +46,12 @@
     width: 80vw;
     object-fit: cover;
     margin: auto;
-    transition: transform .2s;
+    transition: all 0.5s ease;
+}
+
+.img-link:hover {
+    height: 30vh;
+    width: 90vw;
 }
 
 .page {
@@ -93,10 +98,6 @@ a:hover+.cache {
     display: block;
 }
 
-.img-link:hover {
-    width: 90vw;
-    height: 30vh;
-}
 
 @media (min-width: 992px) {
     .navbar-brand {

@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use App\Entity\Detail;
+use App\Entity\Utilisateur;
 use App\Repository\PlatRepository;
-use App\Service\MailService;
+use App\Service\SendMailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ use function Symfony\Component\Clock\now;
 class CommandeController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(SessionInterface $session, PlatRepository $platRepository, EntityManagerInterface $em, MailService $mail): Response
+    public function add(SessionInterface $session, PlatRepository $platRepository, EntityManagerInterface $em, SendMailService $mail): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
@@ -55,16 +56,18 @@ class CommandeController extends AbstractController
 
         $em->persist($order);
         $em->flush();
- 
+
+        
+
         $mail->send(
             'no-reply@monsite.net',
-            $user = $this->$user->getEmail(),
+            $user = $user->getEmail(),
             'Comfirmation de votre commande',
             'commande',
             ['user'=>$user]
-        );
+        ); 
 
-
+// dd($user);
 
         
 

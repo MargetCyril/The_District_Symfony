@@ -29,16 +29,25 @@
 
 <script>
 let slideIndex = 0;
+let isTransitioning = false;
 showSlides();
 
 // Next/previous controls
 function plusSlides(n) {
+  if (!isTransitioning) {
+    isTransitioning = true;
   showSlides(slideIndex += n);
+  setTimeout(()=>{isTransitioning = false;}, 500);
+  }
 }
 
 // Thumbnail image controls
 function currentSlide(n) {
+  if (!isTransitioning) {
+    isTransitioning = true;
   showSlides(slideIndex = n);
+  setTimeout(()=>{isTransitioning = false;}, 500);
+  }
 }
 
 function showSlides() {
