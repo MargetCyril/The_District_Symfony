@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commande;
 use App\Entity\Detail;
 use App\Repository\PlatRepository;
+use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ use function Symfony\Component\Clock\now;
 class CommandeController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(SessionInterface $session, PlatRepository $platRepository, EntityManagerInterface $em): Response
+    public function add(SessionInterface $session, PlatRepository $platRepository, EntityManagerInterface $em, MailService $mail): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
@@ -33,6 +34,7 @@ class CommandeController extends AbstractController
         //$plouf = new DateTimeInterface();
         $order->setDateCommande(new \DateTime());
         //$order->setUtilisateur($session->get('user', []));
+        $user = $this->getUser();
         $order->setUtilisateur($this->getUser()); 
         $total = 0; 
         foreach($panier as $item => $quantity) {
@@ -44,7 +46,7 @@ class CommandeController extends AbstractController
             $total = $prix*$quantity + $total;
         
             $em->persist($detail);
-            $em->flush();
+
         
         $order->addDetail($detail);
         $order->setEtat("0");
@@ -54,6 +56,13 @@ class CommandeController extends AbstractController
         $em->persist($order);
         $em->flush();
  
+        $mail->send(
+            'no-reply@monsite.net',
+            $user = $this->$user->getEmail(),
+            'Comfirmation de votre commande',
+            'commande',
+            ['user'=>$user]
+        );
 
 
 

@@ -11,29 +11,15 @@
 <div class="slideshow-container">
 
   <!-- Full-width images with number and caption text -->
-  {% for categorie in categorie %}
+  {% for slide in categorie %}
   <div class="mySlides">
-  <div class="numbertext">{{categorie.id}} / {{categorie |length}}</div>
-    <a href='/plats/~ {{categorie.id}}' title="Acceuil" class="nav-link header">
-    <img src='{{ asset("/images_the_district/category/" ~ categorie.image )}}' class="img-slide" >
+  <div class="numbertext">{{slide.id}} / {{categorie |length}}</div>
+    <a href='/plats/~ {{slide.id}}' title="Acceuil" class="nav-link header">
+    <img src='{{ asset("/images_the_district/category/" ~ slide.image )}}' class="img-slide" >
     </a>
-    <div class="text">{{categorie.libelle}}</div>
+    <div class="text">{{slide.libelle}}</div>
   </div>
 {% endfor %}
-
-{#
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <img src="{{ asset('/images_the_district/the_district_brand/logo_transparent.png')}}" style="width:100%">
-    <div class="text">Caption Two</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <img src="{{ asset('/images_the_district/the_district_brand/linkedin_banner_image_1.png')}}" style="width:100%">
-    <div class="text">Caption Three</div>
-  </div>
-#}
 
   <!-- Next and previous buttons -->
   <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
