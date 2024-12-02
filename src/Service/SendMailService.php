@@ -27,6 +27,8 @@ class SendMailService
 
         $this->mailer->send($email);
 
+        return new Response('Email sent successfully!', Response::HTTP_OK);
+
     }catch (\Exception $e) {
         return new Response('Failed to send mail: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
     }

@@ -63,16 +63,11 @@ class CommandeController extends AbstractController
             'no-reply@monsite.net',
             $user = $user->getEmail(),
             'Comfirmation de votre commande',
-            'commande',
+            'mailcommande',
             ['user'=>$user]
         ); 
 
-// dd($user);
+        return $this->redirectToRoute('app_clearpanier');
 
-        
-
-        return $this->render('commande/index.html.twig', [
-            'controller_name' => 'CommandeController',
-        ]);
     }
 }

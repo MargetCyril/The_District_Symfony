@@ -17,6 +17,7 @@ final class PlatController extends AbstractController
     #[Route(name: 'app_plat_index', methods: ['GET'])]
     public function index(PlatRepository $platRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('plat/index.html.twig', [
             'plats' => $platRepository->findAll(),
             'search' => ''
@@ -26,6 +27,7 @@ final class PlatController extends AbstractController
     #[Route('/new', name: 'app_plat_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $plat = new Plat();
         $form = $this->createForm(PlatType::class, $plat);
         $form->handleRequest($request);
@@ -47,6 +49,7 @@ final class PlatController extends AbstractController
     #[Route('/{id}', name: 'app_plat_show', methods: ['GET'])]
     public function show(Plat $plat): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('plat/show.html.twig', [
             'plat' => $plat,
             'search' => ''
@@ -56,6 +59,7 @@ final class PlatController extends AbstractController
     #[Route('/{id}/edit', name: 'app_plat_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Plat $plat, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $form = $this->createForm(PlatType::class, $plat);
         $form->handleRequest($request);
 
@@ -75,6 +79,7 @@ final class PlatController extends AbstractController
     #[Route('/{id}', name: 'app_plat_delete', methods: ['POST'])]
     public function delete(Request $request, Plat $plat, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         if ($this->isCsrfTokenValid('delete'.$plat->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($plat);
             $entityManager->flush();
